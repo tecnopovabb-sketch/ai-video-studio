@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d16">
+<title>KLENCOD IDE PRO 2.0</title>
+<style>
+:root{--bg:#090c15;--panel:#111727;--panel2:#192137;--line:#29344f;--text:#f2f5ff;--muted:#9ca9c7;--purple:#a179ff;--orange:#ffad57;--green:#58ddb0;--red:#ff737e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% 0%,#20143d 0,transparent 42%),var(--bg);color:var(--text);font-family:system-ui,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer;color:var(--text);background:#202941;border:1px solid var(--line);border-radius:9px;padding:9px 12px;transition:transform .18s,border-color .2s,background .2s}button:hover{border-color:var(--purple);transform:translateY(-1px)}button:active{transform:scale(.97)}button.primary{background:linear-gradient(120deg,#754be3,#a179ff);border:0;font-weight:700}button.run{background:linear-gradient(120deg,#ff8a3d,#ffd16a);color:#231329;border:0;font-weight:900}button.danger{color:#ff9ba2}header{position:sticky;top:0;z-index:10;background:#0d1120ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font-weight:950;letter-spacing:.7px;font-size:19px}.brand span{color:var(--purple)}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.actions,.tools,.tabs{display:flex;align-items:center;gap:7px;flex-wrap:wrap}main{max-width:1500px;margin:auto;padding:15px}.intro{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 2px 18px;animation:up .45s ease both}.intro h1{font-size:clamp(23px,5vw,35px);margin:0}.intro h1 span{color:var(--purple)}.intro p{margin:7px 0 0;color:var(--muted);font-size:13px}.pill{font-size:11px;color:var(--green);border:1px solid #275d55;background:#10322e;padding:6px 10px;border-radius:99px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}.stat,.panel{background:#111727d9;border:1px solid var(--line);border-radius:13px;overflow:hidden;min-width:0}.stat{padding:12px}.stat strong{display:block;font-size:18px;color:var(--orange)}.stat small{color:var(--muted);font-size:11px}.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 12px;background:var(--panel2);border-bottom:1px solid var(--line)}.panel-head strong{font-size:13px}.select,input[type=text]{background:#0d1322;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px;max-width:100%}.filebar{display:flex;gap:6px;overflow:auto;padding:8px;background:#0c1120;border-bottom:1px solid var(--line)}.filetab{white-space:nowrap;font-size:12px;padding:7px 10px}.filetab.active{background:#5638a6;border-color:var(--purple)}.editor-wrap{position:relative}.linecount{position:absolute;top:8px;left:10px;font-size:10px;color:#7584a5;pointer-events:none}textarea#code{display:block;width:100%;min-height:310px;resize:vertical;border:0;outline:0;padding:16px;background:#0b101c;color:#dce5ff;font:13px/1.75 ui-monospace,SFMono-Regular,Consolas,monospace;direction:ltr;text-align:left;tab-size:2;white-space:pre;overflow:auto}#preview{display:block;width:100%;height:310px;border:0;background:#fff;transition:opacity .25s}.status{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 11px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}.console{height:105px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:10px 12px;color:#b7c9e9;font:12px/1.7 ui-monospace,monospace;direction:ltr;text-align:left}.bottomgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}.project-list{padding:10px;display:grid;gap:7px}.project-item{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#0d1322;border:1px solid var(--line);border-radius:9px;padding:8px;font-size:12px}.help{padding:12px;color:var(--muted);font-size:12px;line-height:1.8}.toast{position:fixed;z-index:20;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#222b43;border:1px solid var(--purple);border-radius:12px;padding:11px 16px;transition:.25s;max-width:90%;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}.modal{position:fixed;inset:0;background:#0009;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex;animation:fade .2s}.dialog{width:min(520px,100%);background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px;animation:up .25s}.dialog h2{margin-top:0}.dialog p{color:var(--muted);font-size:13px;line-height:1.8}.dialog-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px}.hidden{display:none!important}footer{text-align:center;padding:22px;color:var(--muted);font-size:11px}@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes fade{from{opacity:0}to{opacity:1}}@media(min-width:850px){.layout{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}textarea#code,#preview{height:480px;min-height:480px}.bottomgrid{grid-template-columns:1.2fr .8fr}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:420px){header{padding:10px}.actions button{padding:8px;font-size:12px}.intro{padding-top:17px}.stats{gap:6px}.stat{padding:9px}textarea#code{font-size:12px;padding:12px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<header>
+ <div class="brand">KLEN<span>COD</span> <small>IDE PRO · VERSION 2.0</small></div>
+ <div class="actions">
+  <button id="newProject">＋ جديد</button><button id="openProject">📂 فتح</button><button id="saveProject">💾 حفظ</button>
+  <button id="downloadProject">⬇ تصدير</button><button class="run" id="run">▶ تشغيل</button>
+ </div>
+</header>
+<main>
+ <section class="intro"><div><h1>ابنِ فكرتك مع <span>KLENCOD</span></h1><p>محرر ويب للهاتف والكمبيوتر — مشاريع متعددة، حفظ محلي، ومعاينة معزولة.</p></div><span class="pill">● النظام جاهز</span></section>
+ <section class="stats"><div class="stat"><strong id="fileCount">3</strong><small>ملفات المشروع</small></div><div class="stat"><strong id="charCount">0</strong><small>حروف الملف الحالي</small></div><div class="stat"><strong id="saveState">غير محفوظ</strong><small>حالة الحفظ</small></div></section>
+ <section class="layout">
+  <div class="panel">
+   <div class="panel-head"><strong>⌘ محرر الأكواد</strong><div class="tools"><select id="language" class="select" aria-label="اللغة"><option value="html">HTML</option><option value="css">CSS</option><option value="js">JavaScript</option></select><button id="format">تنسيق</button><button id="find">بحث</button></div></div>
+   <div class="filebar" id="filebar"></div>
+   <div class="editor-wrap"><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="محرر الكود"></textarea><span class="linecount" id="linecount">1 : Ln</span></div>
+   <div class="status"><span id="currentFile">index.html</span><span id="dirty">جاهز</span><span>UTF-8 · Tab 2</span></div>
+  </div>
+  <div class="panel">
+   <div class="panel-head"><strong>◉ معاينة المشروع</strong><div class="tools"><button id="refresh">⟳ تحديث</button><button id="fullscreen">⛶ تكبير</button></div></div>
+   <iframe id="preview" title="معاينة آمنة" sandbox="allow-scripts"></iframe>
+   <div class="status"><span>معاينة معزولة</span><span id="previewStatus">لم يبدأ التشغيل</span></div>
+  </div>
+ </section>
+ <section class="bottomgrid">
+  <div class="panel"><div class="panel-head"><strong>▸ سجل التشغيل</strong><button id="clearLog">مسح السجل</button></div><div class="console" id="console">KLENCOD IDE PRO 2.0 — جاهز.\nاختر ملفاً واكتب الكود ثم اضغط تشغيل.</div></div>
+  <div class="panel"><div class="panel-head"><strong>📁 مشاريعي المحفوظة</strong><button id="reloadProjects">تحديث</button></div><div class="project-list" id="projects"></div><div class="help">يحفظ التطبيق المشاريع داخل تخزين المتصفح على هذا الجهاز. استخدم «تصدير» للاحتفاظ بنسخة JSON. هذه النسخة تشغّل HTML/CSS/JavaScript فقط؛ تشغيل Python الحقيقي يحتاج مفسّرًا أو خدمة منفصلة.</div></div>
+ </section>
+</main>
+<footer>KLENCOD IDE PRO · Build · Test · Create</footer>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">مشروع جديد</h2><p id="modalText">أدخل اسم المشروع.</p><input id="modalInput" type="text" placeholder="اسم المشروع" style="width:100%"><div class="dialog-actions"><button id="modalCancel">إلغاء</button><button class="primary" id="modalOK">متابعة</button></div></div></div>
+<input id="importFile" type="file" accept=".json,application/json" class="hidden">
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id);
+const starter={
+ 'index.html':`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مشروعي الأول</title>
+</head>
+<body>
+  <main class="card">
+    <h1>مرحباً بك في KLENCOD 🚀</h1>
+    <p>عدّل الكود وشاهد النتيجة.</p>
+    <button onclick="hello()">جرّبني</button>
+    <p id="message"></p>
+  </main>
+</body>
+</html>`,
+ 'style.css':`body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: system-ui, sans-serif;
+  background: linear-gradient(135deg, #17142e, #5632a8);
+}
+.card {
+  width: min(85%, 420px);
+  padding: 28px;
+  border-radius: 24px;
+  text-align: center;
+  background: white;
+  box-shadow: 0 20px 60px #0004;
+  animation: appear .6s ease both;
+}
+h1 { color: #7545d6; }
+button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  color: white;
+  background: #ff923c;
+  cursor: pointer;
+  transition: transform .2s;
+}
+button:hover { transform: scale(1.06); }
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}`,
+ 'app.js':`function hello() {
+  document.getElementById("message").textContent =
+    "أحسنت! الكود يعمل بنجاح 🎉";
+  console.log("KLENCOD: تم الضغط على الزر");
+}`
+};
+let project={id:'default',name:'مشروعي الأول',files:{...starter},active:'index.html',updated:Date.now()};
+let savedProjects={};
+let dirty=false;
+let toastTimer;
+const escapeScript=s=>s.replace(/<\/script/gi,'<\\/script');
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function log(msg){$('console').textContent+=`\n${msg}`;$('console').scrollTop=$('console').scrollHeight}
+function setDirty(v=true){dirty=v;$('dirty').textContent=v?'تعديلات غير محفوظة':'تم الحفظ';$('saveState').textContent=v?'غير محفوظ':'محفوظ'}
+function activeLang(name){return name.endsWith('.html')?'html':name.endsWith('.css')?'css':'js'}
+function renderTabs(){
+ $('filebar').innerHTML='';
+ Object.keys(project.files).forEach(name=>{
+  const b=document.createElement('button');b.className='filetab'+(project.active===name?' active':'');b.textContent=(name.endsWith('.html')?'🌐 ':name.endsWith('.css')?'🎨 ':'📜 ')+name;
+  b.onclick=()=>{readEditor();project.active=name;renderTabs();loadEditor()};$('filebar').appendChild(b);
+ });
+ $('fileCount').textContent=Object.keys(project.files).length;
+}
+function loadEditor(){
+ $('code').value=project.files[project.active]??'';
+ $('language').value=activeLang(project.active);
+ $('currentFile').textContent=project.active;
+ updateCounts();setDirty(dirty);
+}
+function readEditor(){if(project.active)project.files[project.active]=$('code').value}
+function updateCounts(){
+ $('charCount').textContent=$('code').value.length.toLocaleString();
+ const before=$('code').value.slice(0,$('code').selectionStart);
+ const lines=before.split('\n');
+ $('linecount').textContent=`Ln ${lines.length}, Col ${lines[lines.length-1].length+1}`;
+}
+function ensureFile(ext){
+ const names={html:'page.html',css:'extra.css',js:'script.js'};
+ let base=names[ext],n=1,name=base;
+ while(project.files[name]){const parts=base.split('.');name=parts[0]+n+'.'+parts[1];n++}
+ project.files[name]=ext==='html'?'<!DOCTYPE html>\n<html lang="ar"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>صفحة جديدة</title></head><body>\n  <h1>مرحباً</h1>\n</body></html>':'// '+name+'\n';
+ project.active=name;renderTabs();loadEditor();setDirty();toast('تم إنشاء '+name);
+}
+function compose(){
+ readEditor();
+ const files=project.files;
+ let html=files['index.html']||Object.entries(files).find(([n])=>n.endsWith('.html'))?.[1]||'<h1>أضف ملف HTML لعرض المشروع</h1>';
+ const css=Object.entries(files).filter(([n])=>n.endsWith('.css')).map(([,v])=>v).join('\n');
+ const js=Object.entries(files).filter(([n])=>n.endsWith('.js')).map(([,v])=>v).join('\n');
+ const cssTag='<style>'+css.replace(/<\/style/gi,'<\\/style')+'</style>';
+ const bridge=`<script>
+(function(){
+ const send=(type,message)=>parent.postMessage({channel:'klencod-v2',type,message:String(message)},'*');
+ const old=console.log.bind(console);
+ console.log=(...args)=>{old(...args);send('log',args.join(' '))};
+ console.warn=(...args)=>send('warn',args.join(' '));
+ console.error=(...args)=>send('error',args.join(' '));
+ window.addEventListener('error',e=>send('error',e.message+' (line '+e.lineno+')'));
+ window.addEventListener('unhandledrejection',e=>send('error',e.reason));
+})();
+${escapeScript(js)}
+<\/script>`;
+ if(/<\/body\s*>/i.test(html)) html=html.replace(/<\/body\s*>/i,cssTag+bridge+'</body>');
+ else html+=cssTag+bridge;
+ return html;
+}
+let messageHandler=e=>{
+ const frame=$('preview');
+ if(e.source!==frame.contentWindow||!e.data||e.data.channel!=='klencod-v2')return;
+ const prefix=e.data.type==='error'?'✖ ':e.data.type==='warn'?'⚠ ':'› ';
+ log(prefix+e.data.message);
+};
+window.addEventListener('message',messageHandler);
+function run(){
+ $('console').textContent='بدء تشغيل المشروع...';
+ $('previewStatus').textContent='جارٍ التشغيل';
+ const frame=$('preview');frame.style.opacity='.3';
+ frame.onload=()=>{frame.style.opacity='1';$('previewStatus').textContent='تم التشغيل';log('تم تحديث المعاينة.');};
+ frame.srcdoc=compose();
+}
+function snapshot(){return {id:project.id,name:project.name,files:project.files,active:project.active,updated:Date.now()}}
+function persist(){
+ readEditor();project.updated=Date.now();
+ try{
+  savedProjects[project.id]=snapshot();
+  localStorage.setItem('klencod-projects-v2',JSON.stringify(savedProjects));
+  localStorage.setItem('klencod-current-v2',JSON.stringify(project));
+  setDirty(false);renderProjects();toast('تم حفظ المشروع على الجهاز ✓');
+ }catch(e){toast('تعذر الحفظ: قد تكون مساحة التخزين ممتلئة');log('Save error: '+e.message)}
+}
+function renderProjects(){
+ const root=$('projects');root.innerHTML='';
+ const all=Object.values(savedProjects).sort((a,b)=>b.updated-a.updated);
+ if(!all.length){root.textContent='لا توجد مشاريع محفوظة بعد.';return}
+ all.forEach(p=>{
+  const row=document.createElement('div');row.className='project-item';
+  const name=document.createElement('span');name.textContent=p.name+' · '+Object.keys(p.files||{}).length+' ملفات';
+  const group=document.createElement('div');group.className='tools';
+  const open=document.createElement('button');open.textContent='فتح';open.onclick=()=>{readEditor();project=JSON.parse(JSON.stringify(p));renderTabs();loadEditor();run();toast('تم فتح '+project.name)};
+  const del=document.createElement('button');del.textContent='حذف';del.className='danger';del.onclick=()=>{if(!confirm('حذف المشروع '+p.name+'؟'))return;delete savedProjects[p.id];try{localStorage.setItem('klencod-projects-v2',JSON.stringify(savedProjects));renderProjects();toast('تم حذف المشروع')}catch(e){toast('تعذر الحذف')}};
+  group.append(open,del);row.append(name,group);root.appendChild(row);
+ });
+}
+function modal(title,text,placeholder,callback){
+ $('modalTitle').textContent=title;$('modalText').textContent=text;$('modalInput').value='';$('modalInput').placeholder=placeholder;$('modal').classList.add('open');$('modalInput').focus();
+ const close=()=>{$('modal').classList.remove('open');$('modalOK').onclick=null};
+ $('modalCancel').onclick=close;
+ $('modalOK').onclick=()=>{const val=$('modalInput').value.trim();if(!val){toast('اكتب اسماً أولاً');return}close();callback(val)};
+}
+$('newProject').onclick=()=>modal('مشروع جديد','أنشئ مساحة عمل مستقلة.','اسم المشروع',name=>{
+ readEditor();project={id:'p_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),name,files:{...starter},active:'index.html',updated:Date.now()};
+ renderTabs();loadEditor();setDirty();run();toast('تم إنشاء المشروع');
+});
+$('openProject').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{
+ const f=e.target.files[0];if(!f)return;
+ try{
+  const obj=JSON.parse(await f.text());
+  const p=obj.project||obj;
+  if(!p.files||typeof p.files!=='object'||!Object.values(p.files).every(v=>typeof v==='string'))throw Error('صيغة المشروع غير صحيحة');
+  readEditor();project={id:'p_'+Date.now(),name:String(p.name||f.name).slice(0,100),files:p.files,active:p.active&&p.files[p.active]!==undefined?p.active:Object.keys(p.files)[0],updated:Date.now()};
+  renderTabs();loadEditor();setDirty();run();toast('تم استيراد المشروع');
+ }catch(err){toast('فشل الاستيراد: '+err.message)}e.target.value='';
+};
+$('saveProject').onclick=persist;
+$('downloadProject').onclick=()=>{
+ readEditor();const blob=new Blob([JSON.stringify({format:'KLENCOD-PROJECT',version:2,project:snapshot()},null,2)],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(project.name.replace(/[^\w\u0600-\u06ff-]+/g,'_')||'klencod-project')+'.json';a.click();URL.revokeObjectURL(a.href);toast('تم تصدير نسخة JSON');
+};
+$('run').onclick=run;$('refresh').onclick=run;
+$('language').onchange=()=>{const ext=$('language').value;readEditor();ensureFile(ext);};
+$('code').addEventListener('input',()=>{readEditor();updateCounts();setDirty()});
+$('code').addEventListener('click',updateCounts);$('code').addEventListener('keyup',updateCounts);
+$('code').addEventListener('keydown',e=>{
+ if(e.key==='Tab'){e.preventDefault();const el=e.target,start=el.selectionStart,end=el.selectionEnd;el.setRangeText('  ',start,end,'end');el.dispatchEvent(new Event('input'))}
+ if(e.key==='s'&&(e.ctrlKey||e.metaKey)){e.preventDefault();persist()}
+ if(e.key==='Enter'){
+  const el=e.target,start=el.selectionStart;const line=el.value.slice(0,start).split('\n').pop();const indent=(line.match(/^\s*/)||[''])[0];
+  if(indent){e.preventDefault();el.setRangeText('\n'+indent,start,el.selectionEnd,'end');el.dispatchEvent(new Event('input'))}
+ }
+});
+$('format').onclick=()=>{
+ const el=$('code');const formatted=el.value.split('\n').map(s=>s.replace(/[ \t]+$/,'')).join('\n').replace(/\n{3,}/g,'\n\n');
+ el.value=formatted;el.dispatchEvent(new Event('input'));toast('تم تنظيف المسافات الزائدة (تنسيق أساسي)');
+};
+$('find').onclick=()=>modal('بحث في الملف','أدخل كلمة للبحث داخل الملف الحالي.','نص البحث',q=>{
+ const idx=$('code').value.toLowerCase().indexOf(q.toLowerCase());
+ if(idx<0){toast('لم يتم العثور على النص');return}
+ $('code').focus();$('code').setSelectionRange(idx,idx+q.length);
+ const line=$('code').value.slice(0,idx).split('\n').length;toast('تم العثور على النص في السطر '+line);
+});
+$('clearLog').onclick=()=>$('console').textContent='تم مسح السجل.';
+$('reloadProjects').onclick=renderProjects;
+$('fullscreen').onclick=()=>{const f=$('preview');if(f.requestFullscreen)f.requestFullscreen().catch(()=>toast('تعذر تفعيل ملء الشاشة في هذا المتصفح'));else toast('ملء الشاشة غير مدعوم هنا')};
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
+
+try{
+ savedProjects=JSON.parse(localStorage.getItem('klencod-projects-v2')||'{}');
+ const cur=JSON.parse(localStorage.getItem('klencod-current-v2')||'null');
+ if(cur&&cur.files&&typeof cur.files==='object')project=cur;
+}catch(e){savedProjects={}}
+if(!savedProjects[project.id])savedProjects[project.id]=snapshot();
+renderTabs();loadEditor();renderProjects();setDirty(false);run();
+})();
+</script>
+</body></html>
